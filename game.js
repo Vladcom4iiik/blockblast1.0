@@ -1,5 +1,3 @@
-import { saveScore, getLeaderboard } from "./firebase.js";
-
 // Telegram WebApp API
 const tg = window.Telegram.WebApp;
 
@@ -119,7 +117,6 @@ function updateScore() {
   if (score > highScore) {
     highScore = score;
     highscoreElement.textContent = `Рекорд: ${highScore}`;
-    saveScore(user.id, user.first_name, highScore);
   }
 }
 
@@ -137,20 +134,14 @@ document.getElementById('play-btn').addEventListener('click', () => {
   }, 1000);
 });
 
-// Лидерборд
-document.getElementById('leaderboard-btn').addEventListener('click', async () => {
-  const leaderboard = await getLeaderboard();
-  alert(
-    "Таблица лидеров:\n" +
-    leaderboard
-      .map((entry, index) => `${index + 1}. ${entry.name}: ${entry.score}`)
-      .join("\n")
-  );
+// Лидерборд (временно без Firebase)
+document.getElementById('leaderboard-btn').addEventListener('click', () => {
+  alert("Таблица лидеров:\n1. Игрок 1: 500\n2. Игрок 2: 400\n3. Игрок 3: 300");
 });
 
 // Переход на страницу профиля
 document.getElementById('profile').addEventListener('click', () => {
-  window.location.href = 'profile.html'; // Переход на страницу профиля
+  alert("Переход к профилю...");
 });
 
 // Инициализация
