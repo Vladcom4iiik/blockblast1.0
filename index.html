@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block Blast</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="header">
+    <div id="profile">
+      <img id="avatar" src="" alt="Avatar">
+      <div>
+        <p id="username">Loading...</p>
+        <p id="highscore">High Score: 0</p>
+      </div>
+    </div>
+    <button id="leaderboard-btn">Leaderboard</button>
+  </div>
+
+  <div id="game-container">
+    <h1>Block Blast</h1>
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <p id="score">Score: 0</p>
+    <button id="play-btn">Play</button>
+  </div>
+
+  <script type="module" src="game.js"></script>
+</body>
+</html>
