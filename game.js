@@ -8,10 +8,15 @@ const usernameElement = document.getElementById('username');
 const avatarElement = document.getElementById('avatar');
 const highscoreElement = document.getElementById('highscore');
 
-const user = tg.initDataUnsafe.user;
-if (user) {
-  usernameElement.textContent = user.first_name || 'Anonymous';
-  avatarElement.src = user.photo_url || 'https://via.placeholder.com/50';
+let user;
+try {
+  user = tg.initDataUnsafe.user;
+  if (user) {
+    usernameElement.textContent = user.first_name || 'Аноним';
+    avatarElement.src = user.photo_url || 'https://via.placeholder.com/50';
+  }
+} catch (error) {
+  console.error("Ошибка при получении данных пользователя:", error);
 }
 
 // Настройки игры
@@ -110,16 +115,19 @@ function checkLines() {
 
 // Обновление счета
 function updateScore() {
-  scoreElement.textContent = `Score: ${score}`;
+  scoreElement.textContent = `Счет: ${score}`;
   if (score > highScore) {
     highScore = score;
-    highscoreElement.textContent = `High Score: ${highScore}`;
+    highscoreElement.textContent = `Рекорд: ${highScore}`;
     saveScore(user.id, user.first_name, highScore);
   }
 }
 
 // Запуск игры
 document.getElementById('play-btn').addEventListener('click', () => {
+  document.getElementById('start-screen').style.display = 'none';
+  document.getElementById('game-container').style.display = 'block';
+
   score = 0;
   initGrid();
   setInterval(() => {
